@@ -19,7 +19,7 @@
             align-items: center;
             margin: auto;
             width: 70%;
-            padding: 20px;
+            padding: 30px 5px;
             background: linear-gradient(45deg,
                     rgb(238, 182, 129) 0%,
                     rgba(240, 192, 60, 0.932) 80%,
@@ -178,6 +178,7 @@
             const dealer = dealers.find(dealer => dealer.CONTACT === mobileNumber);
 
             if (dealer) {
+                document.getElementById("result").innerHTML = `<p>✅ You are registered!</p>`;
                 window.location.href = "https://mydukaan.io/junigadicom";
             } else if (!mobileNumberInput) {
                 document.getElementById("result").innerHTML = `<p>🚫 Enter your mobile number!</p>`;
@@ -185,24 +186,22 @@
                 document.getElementById("result").innerHTML = `<p>🚫 Enter a valid mobile number!</p>`;
             } else {
                 document.getElementById("result").innerHTML = `<p>🚫 You are not registered!</p>`;
+                document.getElementsByClassName("register-link")[0].style.display = "block";
             }
 
             // Show reset button
-            document.getElementById("resetButton").style.display = "inline-block";
-            document.getElementById("openButton").style.display = "none";
             document.getElementById("mobileNumber").style.display = "none";
-
-            // Show register link
-            document.getElementsByClassName("register-link")[0].style.display = "block";
+            document.getElementById("openButton").style.display = "none";
+            document.getElementById("resetButton").style.display = "inline-block";
         }
 
         function resetForm() {
-            document.getElementById("openButton").style.display = "inline-block";
+            document.getElementById("mobileNumber").style.display = "inline-block";
             document.getElementById("mobileNumber").value = "";
+            document.getElementById("openButton").style.display = "inline-block";
             document.getElementById("result").innerHTML = "";
             document.getElementById("resetButton").style.display = "none";
             document.getElementsByClassName("register-link")[0].style.display = "none";
-            document.getElementById("mobileNumber").style.display = "inline-block";
         }
 
     </script>
