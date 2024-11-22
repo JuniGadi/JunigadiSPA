@@ -15,7 +15,7 @@
     .search-container {
         display: flex;
         align-items: center;
-        width: 80%;
+        width: 70%;
         max-width: 600px;
     }
 
@@ -63,14 +63,27 @@
         font-weight: 800;
     }
 
-    .search-icon:hover {
-        background-color: #45a049;
-        /* Slightly darker green on hover */
-    }
-
     .search-icon i {
         margin-right: 5px;
         /* Space between the icon and text */
+    }
+
+    @media screen and (max-width: 500px) {
+        .search-container {
+            width: 95%;
+        }
+
+        .search-icon {
+            padding: 7px;
+            font-size: 0.5em;
+            font-weight: 700;
+        }
+
+        .search-box input {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
     }
 </style>
 
@@ -87,12 +100,12 @@
     // Typed.js effect in the search box
     var typed = new Typed('#typed-input', {
         strings: [
-            "Mujhe Swift gadi lena hai..",
-            "Rajkot ma chota hathi padi che?",
-            "eeco joiye che CNG ma.."
+            "mujhe creta gadi lena hai..",
+            "surat ma tukdo padi che?",
+            "eeco joiye che cng ma.."
         ],
-        typeSpeed: 50,
-        backSpeed: 30,
+        typeSpeed: 40,
+        backSpeed: 20,
         loop: true,
         backDelay: 1000,
         attr: 'value', // Typing directly in the input value
