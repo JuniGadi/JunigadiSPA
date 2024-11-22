@@ -1,0 +1,104 @@
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffffff;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .search-box {
+        position: relative;
+        flex-grow: 1;
+        font-size: 1em;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 1.2em;
+        border: 1px solid #ddd;
+        border-radius: 20px 0 0 20px;
+        /* Rounded left side */
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        white-space: nowrap;
+        /* Ensures the text doesn't wrap */
+        text-align: left;
+        /* Starts text from the left */
+        direction: ltr;
+        /* Normal left-to-right flow */
+        padding-right: 20px;
+        /* Prevent text from hitting the edge */
+    }
+
+    .search-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 7px;
+        background-color: #676767;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        /* Green background for contrast */
+        color: white;
+        font-size: 0.7em;
+        border: 1px solid #ddd;
+        border-radius: 0 20px 20px 0;
+        /* Rounded right side */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: 800;
+    }
+
+    .search-icon:hover {
+        background-color: #45a049;
+        /* Slightly darker green on hover */
+    }
+
+    .search-icon i {
+        margin-right: 5px;
+        /* Space between the icon and text */
+    }
+</style>
+
+<div class="search-container">
+    <div class="search-box">
+        <input id="typed-input" type="text" readonly />
+    </div>
+    <div class="search-icon">
+        <i class="fas fa-search"></i> Ask Juni AI ✨
+    </div>
+</div>
+
+<script>
+    // Typed.js effect in the search box
+    var typed = new Typed('#typed-input', {
+        strings: [
+            "Mujhe Swift gadi lena hai..",
+            "Rajkot ma chota hathi padi che?",
+            "eeco joiye che CNG ma.."
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        loop: true,
+        backDelay: 1000,
+        attr: 'value', // Typing directly in the input value
+        onTypingPaused: function () {
+            const input = document.getElementById('typed-input');
+            input.scrollLeft = input.scrollWidth; // Scroll smoothly during typing
+        }
+    });
+</script>

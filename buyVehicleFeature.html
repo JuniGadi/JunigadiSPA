@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .call-button,
+        recharge-button {
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        .call-button {
+            background-color: forestgreen;
+        }
+
+        a {
+            font-weight: 700;
+            background-color: #e9451c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .language-toggle {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .language-toggle select {
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="language-toggle">
+            <label for="language">Language: </label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="gu">ગુજરાતી</option>
+            </select>
+        </div>
+
+        <h1 id="title">Buy Vehicle Benefits</h1>
+        <ul id="features-list">
+            <li id="feature1">This feature allows you to easily locate nearby vehicles from trusted dealers.</li>
+            <li id="feature2">You can directly contact the seller, and rest assured that these vehicles are carefully
+                selected by our dealers.</li>
+            <li id="feature3">In addition to a global search, you can filter vehicles by region, new arrivals, and
+                categories, making it easier to find exactly what you're looking for.</li>
+            <li id="feature4"><strong>Exclusive Offer:</strong> This feature is available exclusively to our paid
+                dealers.</li>
+            <li id="feature5"><strong>Keep Us Updated:</strong> If you come across a vehicle that has already been sold,
+                please report it to us so we can promptly update our stock.</li>
+        </ul>
+        <p id="contact">
+            If you have any questions or need further assistance, feel free to contact us at <strong>+91
+                7226874947</strong>.
+        </p>
+        <div class="button-container">
+            <a class="call-button" href="tel:+919426634954"> Contact Us</a>
+            <a href="https://www.junigadi.com/pricing" class="recharge-button">Recharge Now</a>
+        </div>
+
+    </div>
+
+    <script>
+        function changeLanguage() {
+            const language = document.getElementById("language").value;
+
+            if (language === "hi") {
+                document.getElementById("title").innerText = "वाहन खरीदें फ़ायदे";
+                document.getElementById("feature1").innerText = "यह सुविधा आपको भरोसेमंद डीलरों से निकटतम वाहनों को आसानी से ढूंढने में मदद करती है।";
+                document.getElementById("feature2").innerText = "आप सीधे विक्रेता से संपर्क कर सकते हैं, और यह सुनिश्चित कर सकते हैं कि ये वाहन हमारे डीलरों द्वारा सावधानीपूर्वक चुने गए हैं।";
+                document.getElementById("feature3").innerText = "वैश्विक खोज के साथ-साथ, आप क्षेत्र, नए आगमन और श्रेणियों के आधार पर वाहन खोज सकते हैं।";
+                document.getElementById("feature4").innerHTML = "<strong>विशेष ऑफर:</strong> यह सुविधा केवल हमारे पेड डीलरों के लिए उपलब्ध है।";
+                document.getElementById("feature5").innerHTML = "<strong>हमें सूचित करें:</strong> यदि आपको कोई वाहन बेचा हुआ मिलता है, तो कृपया हमें सूचित करें ताकि हम अपनी सूची को जल्द अपडेट कर सकें।";
+                document.getElementById("contact").innerHTML = "यदि आपके पास कोई प्रश्न हैं या अधिक जानकारी चाहिए, तो कृपया <strong>+91 7226874947</strong> पर हमसे संपर्क करें।";
+            } else if (language === "gu") {
+                document.getElementById("title").innerText = "વાહન ખરીદી લાભો";
+                document.getElementById("feature1").innerText = "આ સુવિધા તમને વિશ્વસનીય ડીલરો પાસેથી નજીકના વાહનોને સરળતાથી શોધવામાં મદદ કરે છે.";
+                document.getElementById("feature2").innerText = "તમે સીધા વેચનાર સાથે સંપર્ક કરી શકો છો, અને ખાતરી રાખો કે આ વાહનો અમારા ડીલરો દ્વારા કાળજીપૂર્વક પસંદ કરેલા છે.";
+                document.getElementById("feature3").innerText = "વૈશ્વિક શોધ ઉપરાંત, તમે વિસ્તાર, નવા આગમન અને શ્રેણીઓ દ્વારા વાહનો શોધી શકો છો.";
+                document.getElementById("feature4").innerHTML = "<strong>વિશિષ્ટ ઓફર:</strong> આ સુવિધા માત્ર અમારા પેઇડ ડીલરો માટે ઉપલબ્ધ છે.";
+                document.getElementById("feature5").innerHTML = "<strong>અમને જાણ કરો:</strong> જો તમને કોઈ વાહન વેચાયેલું મળે, તો કૃપા કરીને અમને જાણ કરો જેથી અમે અમારી યાદીને ઝડપથી અપડેટ કરી શકીએ.";
+                document.getElementById("contact").innerHTML = "જો તમારી પાસે કોઈ પ્રશ્નો હોય અથવા વધુ માહિતી જોઈએ, તો કૃપા કરીને <strong>+91 7226874947</strong> પર અમારો સંપર્ક કરો.";
+            } else {
+                // Default is English
+                document.getElementById("title").innerText = "Buy Vehicle Benefits";
+                document.getElementById("feature1").innerText = "This feature allows you to easily locate nearby vehicles from trusted dealers.";
+                document.getElementById("feature2").innerText = "You can directly contact the seller, and rest assured that these vehicles are carefully selected by our dealers.";
+                document.getElementById("feature3").innerText = "In addition to a global search, you can filter vehicles by region, new arrivals, and categories, making it easier to find exactly what you're looking for.";
+                document.getElementById("feature4").innerHTML = "<strong>Exclusive Offer:</strong> This feature is available exclusively to our paid dealers.";
+                document.getElementById("feature5").innerHTML = "<strong>Keep Us Updated:</strong> If you come across a vehicle that has already been sold, please report it to us so we can promptly update our stock.";
+                document.getElementById("contact").innerHTML = "If you have any questions or need further assistance, feel free to contact us at <strong>+91 7226874947</strong>.";
+            }
+        }
+    </script>
+</body>
+
+</html>

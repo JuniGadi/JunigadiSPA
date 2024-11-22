@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <style>
+    /* Background overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Popup container */
+    .form-container {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 300px;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-weight: 800;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      display: block;
+      margin: auto;
+      background-color: #5d9de2;
+      color: white;
+      padding: 10px;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="popup" class="overlay" style="display: none;">
+    <div class="form-container">
+      <button class="close-btn" onclick="closePopup()">×</button>
+      <h2>Register</h2>
+      <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Ramesh Bhai" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91 7226871727" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Gandhidham, Kutch" required>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+  <script>
+    // Show custom prompt and focus on the name field when prompt appears
+    OneSignal.on('notificationPrompt', function () {
+      setTimeout(function () {
+        document.getElementById('name').focus();
+      }, 500); // Delay of 500ms to allow the prompt to load
+    });
+
+    // Handle form submission
+    document.getElementById('onesignalForm').onsubmit = function (e) {
+      e.preventDefault();
+
+      // Gather form data
+      const data = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        location: document.getElementById('location').value
+      };
+
+      // Submit data to Google Sheets through Apps Script
+      fetch('https://script.google.com/macros/s/AKfycbwplNG8rAt5sx2tAe02fSmFfXalPZWoP2L8Twc9bomcz1bEJHUq7bDHbTPnS0XtykXXMw/exec', {  // Replace with your Google Apps Script URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.text())
+        .then(responseMessage => {
+          alert(responseMessage);
+          OneSignal.push(["sendTag", "registered_user", "true"]);  // Tag user for notifications
+          document.getElementById('onesignalForm').reset();
+          document.querySelector('.onesignal-custom-prompt').style.display = 'none';  // Close the prompt
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("Failed to submit data. Please try again.");
+        });
+    };
+  </script>
+
+</body>
+
+</html>
