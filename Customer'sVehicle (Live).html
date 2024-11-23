@@ -40,7 +40,7 @@
 
         input[type="text"] {
             padding: 10px;
-            margin-bottom: 2em;
+            margin-bottom: 1em;
             border: 1px solid #ccc;
             border-radius: 15px;
         }
@@ -60,7 +60,6 @@
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            margin-bottom: 10px;
             transition: background-color 0.3s ease;
             transition: transform 0.2s ease;
         }
@@ -76,7 +75,7 @@
         }
 
         #result p {
-            font-size: 0.8rem;
+            font-size: 1em;
             font-weight: 800;
             color: #ffffff;
         }
@@ -106,9 +105,9 @@
     <h1>Customer's Vehicle <br> (ગ્રાહક ની ગાડી)</h1>
     <div class="container">
         <input type="text" id="mobileNumber" placeholder="નંબર નાખો ..." onclick="value=''" />
-        <button id="openButton" onclick="fetchDealerStock()">Buy Now</button>
-        <button id="resetButton" onclick="resetForm()">Reset</button>
+        <button id="openButton" onclick="fetchDealerStock()">View Now</button>
         <div id="result"></div>
+        <button id="resetButton" onclick="resetForm()">Reset</button>
     </div>
     <!-- Footer -->
     <footer>
@@ -154,24 +153,36 @@
                 await fetchDealersData();
             }
 
-            const dealer = dealers.find(dealer => dealer.CONTACT === mobileNumber);
-
-            if (dealer) {
-                document.getElementById("result").innerHTML = `<p>✅ You are registered!</p>`;
-                window.open(dukaanUrl, "_blank");
-            } else if (!mobileNumberInput) {
-                document.getElementById("result").innerHTML = `<p>🚫 Enter your mobile number!</p>`;
-            } else if (!validMobileNumber) {
-                document.getElementById("result").innerHTML = `<p>🚫 Enter a valid mobile number!</p>`;
-            } else {
-                document.getElementById("result").innerHTML = `<p>🚫 You are not registered!</p>`;
-                window.open(feturesUrl, "_blank");
-            }
+            const activeDealer = dealers.find(dealer => dealer.CONTACT === mobileNumber && dealer.STATUS === "Active");
+            const expiredDealer = dealers.find(dealer => dealer.CONTACT === mobileNumber && dealer.STATUS === "Expired");
+            const trialDealer = dealers.find(dealer => dealer.CONTACT === mobileNumber && dealer.STATUS === "Trial");
 
             // Show reset button
             document.getElementById("mobileNumber").style.display = "none";
             document.getElementById("openButton").style.display = "none";
             document.getElementById("resetButton").style.display = "inline-block";
+
+            if (activeDealer) {
+                document.getElementById("result").innerHTML = `<p>✅ You are registered!</p>`;
+                window.open(dukaanUrl, "_blank");
+            } else if (expiredDealer) {
+                document.getElementById("result").innerHTML = `<p>⚠️ Your registration is expired!</p>`;
+                window.open(feturesUrl, "_blank");
+            } else if (trialDealer) {
+                document.getElementById("result").innerHTML = `<p>⚠️ You are in trial phase! </p>`;
+                window.open(feturesUrl, "_blank");
+            } else if (!mobileNumberInput) {
+                document.getElementById("result").innerHTML = `<p>🚫 Enter your mobile number!</p>`;
+                document.getElementById("mobileNumber").style.display = "inline-block";
+            } else if (!validMobileNumber) {
+                document.getElementById("result").innerHTML = `<p>🚫 Enter a valid mobile number!</p>`;
+                document.getElementById("mobileNumber").style.display = "inline-block";
+            } else {
+                document.getElementById("result").innerHTML = `<p>⚠️ You are not registered!</p>`;
+                window.open(feturesUrl, "_blank");
+            }
+
+
         }
 
         function resetForm() {
