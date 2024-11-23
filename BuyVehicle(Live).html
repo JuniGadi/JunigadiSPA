@@ -168,6 +168,8 @@
             const validMobileNumber = /^[0-9]{10}$/.test(mobileNumberInput);
             const resultDiv = document.getElementById("result");
 
+            url = "https://mydukaan.io/junigadicom";
+
             resultDiv.innerHTML = `<p style="font-size: 18px;font-weight: 700;color: black;">Please wait...</p>`;
 
             // Ensure the dealers array is populated
@@ -179,7 +181,7 @@
 
             if (dealer) {
                 document.getElementById("result").innerHTML = `<p>✅ You are registered!</p>`;
-                window.location.href = "https://mydukaan.io/junigadicom";
+                window.open(url, "_blank");
             } else if (!mobileNumberInput) {
                 document.getElementById("result").innerHTML = `<p>🚫 Enter your mobile number!</p>`;
             } else if (!validMobileNumber) {
