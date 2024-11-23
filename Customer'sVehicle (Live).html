@@ -70,10 +70,6 @@
             transform: scale(1.03);
         }
 
-        .register-link {
-            display: none;
-            color: white;
-        }
 
         #result {
             color: black;
@@ -93,15 +89,6 @@
             font-weight: 600;
         }
 
-        a {
-            color: #f3cf00;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
 
         input::placeholder {
             color: #000000;
@@ -116,16 +103,12 @@
 </head>
 
 <body>
-    <h1>Customer's Vehicle <br> (ગ્રાહક કી ગાડી)</h1>
+    <h1>Customer's Vehicle <br> (ગ્રાહક ની ગાડી)</h1>
     <div class="container">
         <input type="text" id="mobileNumber" placeholder="નંબર નાખો ..." onclick="value=''" />
         <button id="openButton" onclick="fetchDealerStock()">Buy Now</button>
         <button id="resetButton" onclick="resetForm()">Reset</button>
         <div id="result"></div>
-        <!-- Register link -->
-        <div class="register-link">
-            <strong>New Dealer? </strong><a href="https://tally.so/r/3jBpB9"><strong>Register Now</strong></a>
-        </div>
     </div>
     <!-- Footer -->
     <footer>
@@ -160,7 +143,9 @@
             const validMobileNumber = /^[0-9]{10}$/.test(mobileNumberInput);
             const resultDiv = document.getElementById("result");
 
-            url = "https://mydukaan.io/junigadicom";
+            dukaanUrl = "https://mydukaan.io/junigadicom";
+
+            feturesUrl = "https://www.junigadi.com/tools/buy-vehicle-feature"
 
             resultDiv.innerHTML = `<p style="font-size: 18px;font-weight: 700;color: white;">Please wait...</p>`;
 
@@ -173,14 +158,14 @@
 
             if (dealer) {
                 document.getElementById("result").innerHTML = `<p>✅ You are registered!</p>`;
-                window.open(url, "_blank");
+                window.open(dukaanUrl, "_blank");
             } else if (!mobileNumberInput) {
                 document.getElementById("result").innerHTML = `<p>🚫 Enter your mobile number!</p>`;
             } else if (!validMobileNumber) {
                 document.getElementById("result").innerHTML = `<p>🚫 Enter a valid mobile number!</p>`;
             } else {
                 document.getElementById("result").innerHTML = `<p>🚫 You are not registered!</p>`;
-                document.getElementsByClassName("register-link")[0].style.display = "block";
+                window.open(feturesUrl, "_blank");
             }
 
             // Show reset button
@@ -195,7 +180,6 @@
             document.getElementById("openButton").style.display = "inline-block";
             document.getElementById("result").innerHTML = "";
             document.getElementById("resetButton").style.display = "none";
-            document.getElementsByClassName("register-link")[0].style.display = "none";
         }
 
     </script>
