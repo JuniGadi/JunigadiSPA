@@ -21,9 +21,9 @@
             width: 70%;
             padding: 30px 5px;
             background: linear-gradient(45deg,
-                    rgb(238, 182, 129) 0%,
-                    rgba(240, 192, 60, 0.932) 80%,
-                    rgb(255, 182, 24) 99%);
+                    rgb(68, 96, 221) 0%,
+                    rgba(20, 125, 151, 0.932) 80%,
+                    rgb(19, 83, 143) 99%);
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -54,8 +54,8 @@
         button {
             font-size: 0.8em;
             padding: 8px 12px;
-            background-color: #e9451c;
             font-weight: 800;
+            background-color: #da472e;
             color: white;
             border: none;
             border-radius: 15px;
@@ -66,12 +66,13 @@
         }
 
         button:hover {
-            background-color: #fa4d2f;
+            background-color: #f0553a;
             transform: scale(1.03);
         }
 
         .register-link {
-            display: none;
+            /* display: none; */
+            color: white;
         }
 
         #result {
@@ -80,8 +81,8 @@
 
         #result p {
             font-size: 0.8rem;
-            font-weight: 700;
-            color: #54368d;
+            font-weight: 800;
+            color: #ffffff;
         }
 
 
@@ -93,13 +94,12 @@
         }
 
         a {
-            color: #4d9416;
+            color: #f3cf00;
             text-decoration: none;
             font-weight: 500;
         }
 
         a:hover {
-            color: rgb(19, 139, 19);
             text-decoration: underline;
         }
 
@@ -110,15 +110,7 @@
 
         #resetButton {
             display: none;
-            background-color: rgb(85, 82, 82);
-        }
-
-        #openButton {
-            background-color: rgb(18, 161, 204);
-        }
-
-        #openButton:hover {
-            background-color: rgb(24, 129, 161);
+            background-color: #f0553a;
         }
     </style>
 </head>
@@ -170,7 +162,7 @@
 
             url = "https://mydukaan.io/junigadicom";
 
-            resultDiv.innerHTML = `<p style="font-size: 18px;font-weight: 700;color: black;">Please wait...</p>`;
+            resultDiv.innerHTML = `<p style="font-size: 18px;font-weight: 700;color: white;">Please wait...</p>`;
 
             // Ensure the dealers array is populated
             if (dealers.length === 0) {
